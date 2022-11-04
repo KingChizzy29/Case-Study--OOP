@@ -11,7 +11,7 @@ public class Menu {
     private final String Title4 = "Drinks";
 
     public static  String Border = "+===================================+";
-   public static String Division = "------------------------------";
+    public static String Division = "------------------------------";
 
     //Silog
 
