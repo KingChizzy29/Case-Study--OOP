@@ -42,14 +42,30 @@ public class Receipt {
     }
 
     public void takeOrder(boolean isOrderComplete) {
-        int categoryNum;
-        int productNum;
-        int orderQuantity;
+        int categoryNum = 0;
+        int productNum = 0;
+        int orderQuantity = 0;
 
         System.out.println("-------------------------------");
         System.out.println("What would you like to order?");
-        System.out.print("Press 1 for [Silog Rice Meals], Press 2 for [Snacks], Press 3 for [Drinks]: ");
-        categoryNum = input.nextInt();
+        System.out.println("Press 1 for [Silog Rice Meals] \nPress 2 for [Snacks] \nPress 3 for [Drinks]");
+
+        while(true) {
+            try {
+                System.out.print("Enter choice: ");
+                categoryNum = Integer.parseInt(input.nextLine());
+
+                if(categoryNum > 0 && categoryNum <= menuItem.size()) {
+                    break;
+                } else{
+                    throw new Exception();
+                }
+            }catch (Exception e) {
+                System.out.println("Error: Invalid Input");
+                categoryNum = 0;
+            }
+        }
+
         System.out.println(DIVISION);
 
         ArrayList<MenuItem> chosenCategory = menuItem.get(categoryNum- 1 );
@@ -57,12 +73,40 @@ public class Receipt {
             System.out.println("Press " + (i+1) + " for [" + chosenCategory.get(i).getName() +"]");
 
         }
-        System.out.print("Enter choice: ");
-        productNum = input.nextInt();input.nextLine();
+
+        while(true) {
+            try {
+                System.out.print("Enter choice: ");
+                productNum = Integer.parseInt(input.nextLine());
+
+                if(productNum > 0 && productNum <= chosenCategory.size()) {
+                    break;
+                } else{
+                    throw new Exception();
+                }
+            }catch (Exception e) {
+                System.out.println("Error: Invalid Input");
+                productNum = 0;
+            }
+        }
 
         MenuItem chosenProduct = chosenCategory.get(productNum - 1);
-        System.out.print("How many " + chosenProduct.getName() + " do you want to Buy? :");
-        orderQuantity = input.nextInt();input.nextLine();
+
+        while(true) {
+            try {
+                System.out.print("How many " + chosenProduct.getName() + " do you want to Buy? :");
+                orderQuantity = Integer.parseInt(input.nextLine());
+
+                if(orderQuantity > 0) {
+                    break;
+                } else{
+                    throw new Exception();
+                }
+            }catch (Exception e) {
+                System.out.println("Error: Invalid Input");
+                orderQuantity = 0;
+            }
+        }
 
         String orderName = chosenProduct.getName();
         int orderPrice = chosenProduct.getPrice();
@@ -70,8 +114,23 @@ public class Receipt {
         orders.add(order);
 
         System.out.println("+++  Do you want to buy again?  +++");
-        System.out.print("Press [Y] for Yes and [N] for No : ");
-        char addOtherOrder  = input.nextLine().charAt(0);
+
+        char addOtherOrder = 'a';
+        while(true) {
+            try {
+                System.out.print("Press [Y] for Yes and [N] for No : ");
+                addOtherOrder  = input.nextLine().charAt(0);
+
+                if(addOtherOrder == 'Y' || addOtherOrder == 'N') {
+                    break;
+                }else{
+                    throw new Exception();
+                }
+            } catch(Exception e) {
+                System.out.println("Error: Invalid Input");
+                addOtherOrder = 'a';
+            }
+        }
 
         if(addOtherOrder == 'N') {
             this.isOrderComplete = true;

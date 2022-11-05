@@ -34,8 +34,8 @@ public class Customer {
         return gender;
     }
 
-    public void setGender(char gender) {
-        this.gender = gender;
+    public void setGender(char gender) throws Exception {
+            this.gender = gender;
     }
 
     public int getAge() {

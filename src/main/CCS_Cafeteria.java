@@ -33,28 +33,70 @@ public class CCS_Cafeteria {
     }
 
     public Customer setCustomerDetails() {
-        Customer customer;
-        String name;
-        char gender;
-        int age;
-        long id;
+        Customer customer = null;
+        String name = null;
+        char gender = 'a';
+        int age = 0;
+        long id = 0l;
 
         System.out.println("(Please enter your information Below)");
 
         System.out.print("Your Name is: ");
         name = input.nextLine();
 
-        System.out.print("Your Gender is: ");
-        gender = input.nextLine().charAt(0);
+        while(true) {
+            try {
+                System.out.print("Your Gender is (M/F): ");
+                gender = input.nextLine().charAt(0);
 
-        System.out.print("Age is: ");
-        age = input.nextInt();
+                if(gender == 'M' || gender == 'F') {
+                    break;
+                }else{
+                    throw new Exception();
+                }
+            } catch(Exception e) {
+                System.out.println("Error: Invalid Input");
+            }
+        }
 
-        System.out.print("Enter your Customer/Student Number is: ");
-        id = input.nextLong(); input.nextLine();
+        while(true) {
+            try {
+                System.out.print("Age is: ");
+                age = Integer.parseInt(input.nextLine());
 
-        customer = new Customer(name, gender, age, id);
-        customer.printDetails();
+                if(age <= 0) {
+                    throw new Exception();
+                } else{
+                    break;
+                }
+            }catch (Exception e) {
+                System.out.println("Error: Invalid Input");
+                age = 0;
+            }
+        }
+
+        while(true) {
+            try {
+                System.out.print("Enter your Customer/Student Number is: ");
+                id = Long.parseLong(input.nextLine());
+
+                if(id <= 0) {
+                    throw new Exception();
+                } else{
+                    break;
+                }
+            }catch (Exception e) {
+                System.out.println("Error: Invalid Input");
+            }
+        }
+
+        try {
+            customer = new Customer(name, gender, age, id);
+            customer.printDetails();
+        }catch (Exception e) {
+            System.out.println("Error: Incorrect Input \nPlease try again");
+            setCustomerDetails();
+        }
 
         return customer;
     }
