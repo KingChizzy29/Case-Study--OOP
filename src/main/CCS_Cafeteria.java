@@ -8,18 +8,19 @@ public class CCS_Cafeteria {
     private Scanner input;
     private Customer customer;
     private Menu menu;
-    //Stop here
+    private Receipt receipt;
 
     public CCS_Cafeteria() {
         this.input = new Scanner(System.in);
         printWelcomeMessage();
         setCustomer();
         menu = new Menu();
+        receipt = new Receipt(menu);
     }
 
     public void printWelcomeMessage() {
         System.out.println("=====================================");
-        System.out.println("Welcome to CCS CAFETERIA ORDER SYSTEM\n (Please enter your information Below)");
+        System.out.println("Welcome to CCS CAFETERIA ORDER SYSTEM");
     }
 
     public void setCustomer(){

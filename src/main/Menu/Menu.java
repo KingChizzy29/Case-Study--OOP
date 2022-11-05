@@ -15,6 +15,7 @@ public class Menu {
 
     public Menu() {
         loadMenuItems();
+        printMenu();
     }
 
     public void loadMenuItems() {
@@ -67,6 +68,18 @@ public class Menu {
             MenuItem menuItem = drinks.get(i);
             System.out.println("\t" + menuItem.getName() + "       P" + menuItem.getPrice());
         }
+        System.out.println(BORDER);
     }
 
+    public ArrayList<MenuItem> getSilogRiceMeals() {
+        return silogRiceMeals;
+    }
+
+    public ArrayList<MenuItem> getSnacks() {
+        return snacks;
+    }
+
+    public ArrayList<MenuItem> getDrinks() {
+        return drinks;
+    }
 }
